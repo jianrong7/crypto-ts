@@ -1,0 +1,77 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.container:hover {
+  transform: scale(1.02);
+}
+
+.container > span {
+  position: absolute;
+}
+
+.mcRank {
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.pxChange {
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.1rem;
+}
+
+.negative {
+  color: red;
+}
+
+.positive {
+  color: green;
+}
+
+.name {
+  font-size: 1.5rem;
+}
+
+.currentPrice {
+  font-weight: 600;
+}
+
+.dayRangeBar {
+  border-bottom: 2px solid rgb(214, 214, 214);
+  width: 100%;
+  border-radius: 4px;
+}
+
+.indicator {
+  width: 2%;
+  border-bottom: 4px solid rgb(2, 113, 216);
+  margin-bottom: -3px;
+}
+
+.dayRange {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.dayRange > p {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.dayRange > span {
+  font-size: 1.2rem;
+}
