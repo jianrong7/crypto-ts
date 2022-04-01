@@ -2,8 +2,8 @@ import type { NextPage } from "next";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import Listing from "../components/Home/Listing";
-import styles from "../styles/Home.module.css";
+import Listing from "@/components/Home/Listing";
+import styles from "@/styles/Home.module.css";
 import { ListingInterface } from "../types/Home/listing";
 
 const Home: NextPage = ({

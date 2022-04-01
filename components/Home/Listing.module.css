@@ -48,30 +48,3 @@
 .currentPrice {
   font-weight: 600;
 }
-
-.dayRangeBar {
-  border-bottom: 2px solid rgb(214, 214, 214);
-  width: 100%;
-  border-radius: 4px;
-}
-
-.indicator {
-  width: 2%;
-  border-bottom: 4px solid rgb(2, 113, 216);
-  margin-bottom: -3px;
-}
-
-.dayRange {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.dayRange > p {
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.dayRange > span {
-  font-size: 1.2rem;
-}

@@ -1,9 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import cx from "classnames";
 import { ListingInterface } from "../../types/Home/listing";
 
 import styles from "./Listing.module.css";
+import RangeIndicator from "../shared/RangeIndicator";
 
 interface ListingProps {
   listing: ListingInterface;
@@ -17,42 +19,30 @@ const Listing: React.FC<ListingProps> = ({ listing }) => {
     name,
     current_price,
     low_24h,
+    id,
   } = listing;
 
   return (
-    <div className={styles.container}>
-      <span className={styles.mcRank}>
-        #{market_cap_rank}
-        <p>+</p>
-      </span>
-      <span
-        className={cx(styles.pxChange, {
-          [styles.negative]: price_change_percentage_24h < 0,
-          [styles.positive]: price_change_percentage_24h > 0,
-        })}
-      >
-        {(Math.round(price_change_percentage_24h * 100) / 100).toFixed(2)}%
-      </span>
-      <Image src={image} alt={name} width={48} height={48} />
-      <h2 className={styles.name}>{name}</h2>
-      <p className={styles.currentPrice}>S${current_price}</p>
-
-      <div className={styles.dayRangeBar}>
-        <div
-          className={styles.indicator}
-          style={{
-            marginLeft: `${
-              ((current_price - low_24h) / (high_24h - low_24h)) * 100
-            }%`,
-          }}
-        ></div>
+    <Link href={`/coins/${encodeURIComponent(id)}`} passHref>
+      <div className={styles.container}>
+        <span className={styles.mcRank}>
+          #{market_cap_rank}
+          <p>+</p>
+        </span>
+        <span
+          className={cx(styles.pxChange, {
+            [styles.negative]: price_change_percentage_24h < 0,
+            [styles.positive]: price_change_percentage_24h > 0,
+          })}
+        >
+          {(Math.round(price_change_percentage_24h * 100) / 100).toFixed(2)}%
+        </span>
+        <Image src={image} alt={name} width={48} height={48} />
+        <h2 className={styles.name}>{name}</h2>
+        <p className={styles.currentPrice}>S${current_price}</p>
+        <RangeIndicator current={current_price} low={low_24h} high={high_24h} />
       </div>
-      <div className={styles.dayRange}>
-        <span>{low_24h}</span>
-        <p>24h Range</p>
-        <span>{high_24h}</span>
-      </div>
-    </div>
+    </Link>
   );
 };
 
