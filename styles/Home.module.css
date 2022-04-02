@@ -25,6 +25,7 @@
   grid-auto-flow: row;
   row-gap: 40px;
   column-gap: 20px;
+  overflow: hidden !important;
 }
 
 @media screen and (min-width: 768px) {
