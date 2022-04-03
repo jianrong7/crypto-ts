@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import cx from "classnames";
+import redis from "lib/redis";
+import IpContext from "../IpContext";
 import { ListingInterface } from "../../types/Home/listing";
 
 import styles from "./Listing.module.css";
@@ -22,12 +24,22 @@ const Listing: React.FC<ListingProps> = ({ listing }) => {
     id,
   } = listing;
 
+  const ip = useContext(IpContext);
+  const handleAddToWatchlist = (e) => {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    // const current = await redis.get(ip);
+    // const listOfItems = current || [];
+    // listOfItems.append(`/coins/${encodeURIComponent(id)}`);
+    // console.log(listOfItems);
+  };
+
   return (
     <Link href={`/coins/${encodeURIComponent(id)}`} passHref>
       <div className={styles.container}>
         <span className={styles.mcRank}>
           #{market_cap_rank}
-          <p>+</p>
+          <button onClick={(e) => handleAddToWatchlist(e)}>+</button>
         </span>
         <span
           className={cx(styles.pxChange, {

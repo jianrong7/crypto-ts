@@ -5,18 +5,19 @@ import Image from "next/image";
 import styles from "@/styles/Coin.module.css";
 import Chart from "@/components/Coins/Chart";
 import Overview from "@/components/Coins/Overview";
+import NavBar from "@/components/shared/NavBar";
 // import { ListingInterface } from "../types/Home/listing";
 
 const Coin: NextPage = ({
   data,
   chartData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  // console.log(data, chartData);
   return (
     <div className={styles.container}>
       <main className={styles.main}>
+        <NavBar />
         <Overview data={data} />
-        <section>
+        <section className={styles.chartSection}>
           <Chart coinName={data?.name} data={chartData} />
         </section>
       </main>

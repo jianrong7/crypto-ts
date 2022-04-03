@@ -7,7 +7,7 @@
   min-height: 100vh;
   height: inherit;
   display: grid;
-  column-gap: 20px;
+  column-gap: 0;
   row-gap: 40px;
   grid-template-columns: 1fr minmax(auto, 1120px) 1fr;
   grid-template-rows: none;
@@ -18,23 +18,13 @@
   grid-column: 2;
 }
 
-.listings {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: none;
-  grid-auto-flow: row;
-  row-gap: 40px;
-  column-gap: 20px;
+.chartSection {
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (min-width: 768px) {
-  .listings {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .listings {
-    grid-template-columns: repeat(3, 1fr);
+  .main {
+    column-gap: 20px;
   }
 }

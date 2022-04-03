@@ -11,6 +11,8 @@ import {
 } from "chart.js";
 import capitalise from "../../utils/capitalise";
 
+import styles from "./Chart.module.css";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -54,6 +56,7 @@ const Chart: React.FC<ChartProps> = ({ coinName, data }) => {
   };
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "top" as const,
@@ -64,7 +67,11 @@ const Chart: React.FC<ChartProps> = ({ coinName, data }) => {
       },
     },
   };
-  return <Line options={options} data={chartData} />;
+  return (
+    <div className={styles.container}>
+      <Line options={options} data={chartData} />
+    </div>
+  );
 };
 
 export default Chart;

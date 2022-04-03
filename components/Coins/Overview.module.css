@@ -30,6 +30,7 @@ p.gecko {
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 .header > h1 {
@@ -70,7 +71,7 @@ p.gecko {
 .description {
   line-height: 1.5rem;
   font-weight: 400;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .description > a {

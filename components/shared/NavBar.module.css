@@ -1,9 +1,47 @@
 .container {
   display: flex;
   justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.navContainer {
+  width: 100%;
 }
 
 .nav {
   display: flex;
   gap: 2rem;
+  justify-content: space-between;
+}
+
+.main {
+  display: none;
+  font-weight: 600;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: rgb(87, 87, 255);
+}
+
+.main:hover {
+  color: blue;
+}
+
+.link {
+  font-weight: 600;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: blue;
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    display: block;
+    white-space: nowrap;
+  }
+  .nav {
+    justify-content: flex-end;
+  }
 }
