@@ -2,8 +2,6 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import cx from "classnames";
-import redis from "lib/redis";
-import IpContext from "../IpContext";
 import { ListingInterface } from "../../types/Home/listing";
 
 import styles from "./Listing.module.css";
@@ -24,14 +22,17 @@ const Listing: React.FC<ListingProps> = ({ listing }) => {
     id,
   } = listing;
 
-  const ip = useContext(IpContext);
-  const handleAddToWatchlist = (e) => {
+  const handleAddToWatchlist = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
-    // const current = await redis.get(ip);
-    // const listOfItems = current || [];
-    // listOfItems.append(`/coins/${encodeURIComponent(id)}`);
-    // console.log(listOfItems);
+    const res = await fetch(`/api/redis`, {
+      method: "POST",
+      body: `/coins/${encodeURIComponent(id)}`,
+    });
+    const data = await res.json();
+    console.log(data);
   };
 
   return (
