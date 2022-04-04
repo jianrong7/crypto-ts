@@ -32,7 +32,6 @@ const Listing: React.FC<ListingProps> = ({ listing }) => {
       body: `/coins/${encodeURIComponent(id)}`,
     });
     const data = await res.json();
-    console.log(data);
   };
 
   return (
@@ -50,7 +49,7 @@ const Listing: React.FC<ListingProps> = ({ listing }) => {
         >
           {(Math.round(price_change_percentage_24h * 100) / 100).toFixed(2)}%
         </span>
-        <Image src={image} alt={name} width={48} height={48} />
+        <Image src={image?.large || image} alt={name} width={48} height={48} />
         <h2 className={styles.name}>{name}</h2>
         <p className={styles.currentPrice}>S${current_price}</p>
         <RangeIndicator current={current_price} low={low_24h} high={high_24h} />

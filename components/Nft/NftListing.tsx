@@ -12,6 +12,20 @@ const NftListing: React.FC<NftListingProps> = ({ nft }) => {
   const { metadata, name, token_id, token_address } = nft;
   const parsedMetadata = JSON.parse(metadata);
 
+  const handleAddToWatchlist = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    const res = await fetch(`/api/redis`, {
+      method: "POST",
+      body: `/nft/${encodeURIComponent(token_address)}/${encodeURIComponent(
+        token_id
+      )}`,
+    });
+    const data = await res.json();
+  };
+
   return (
     <Link
       href={`/nft/${encodeURIComponent(token_address)}/${encodeURIComponent(
@@ -22,7 +36,7 @@ const NftListing: React.FC<NftListingProps> = ({ nft }) => {
       <div className={styles.container}>
         <span className={styles.mcRank}>
           #{token_id}
-          <p>+</p>
+          <button onClick={(e) => handleAddToWatchlist(e)}>+</button>
         </span>
         <span className={styles.pxChange}>{parsedMetadata.description}</span>
         <Image src={parsedMetadata?.image} alt={name} width={60} height={60} />
