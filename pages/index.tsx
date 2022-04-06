@@ -43,6 +43,7 @@ const Home: NextPage = ({
             ))}
           </InfiniteScroll>
         </section>
+        <div />
       </main>
     </div>
   );

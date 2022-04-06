@@ -45,6 +45,7 @@ const NFTPage: NextPage = ({
             ))}
           </InfiniteScroll>
         </section>
+        <div />
       </main>
     </div>
   );

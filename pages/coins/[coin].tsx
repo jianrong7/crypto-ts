@@ -20,6 +20,7 @@ const Coin: NextPage = ({
         <section className={styles.chartSection}>
           <Chart coinName={data?.name} data={chartData} />
         </section>
+        <div />
       </main>
     </div>
   );

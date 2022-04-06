@@ -7,9 +7,10 @@ import styles from "./NftListing.module.css";
 
 interface NftListingProps {
   nft: NftInterface;
+  source?: string;
 }
-const NftListing: React.FC<NftListingProps> = ({ nft }) => {
-  const { metadata, name, token_id, token_address } = nft;
+const NftListing: React.FC<NftListingProps> = ({ nft, source }) => {
+  const { metadata, name, token_id, token_uri, token_address } = nft;
   const parsedMetadata = JSON.parse(metadata);
 
   const handleAddToWatchlist = async (
@@ -17,26 +18,22 @@ const NftListing: React.FC<NftListingProps> = ({ nft }) => {
   ) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
-    const res = await fetch(`/api/redis`, {
+    await fetch(`/api/redis`, {
       method: "POST",
       body: `/nft/${encodeURIComponent(token_address)}/${encodeURIComponent(
         token_id
       )}`,
     });
-    const data = await res.json();
   };
 
   return (
-    <Link
-      href={`/nft/${encodeURIComponent(token_address)}/${encodeURIComponent(
-        token_id
-      )}`}
-      passHref
-    >
+    <Link href={token_uri} passHref>
       <div className={styles.container}>
         <span className={styles.mcRank}>
           #{token_id}
-          <button onClick={(e) => handleAddToWatchlist(e)}>+</button>
+          {source !== "watchlist" && (
+            <button onClick={(e) => handleAddToWatchlist(e)}>+</button>
+          )}
         </span>
         <span className={styles.pxChange}>{parsedMetadata.description}</span>
         <Image src={parsedMetadata?.image} alt={name} width={60} height={60} />

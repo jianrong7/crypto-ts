@@ -1,37 +1,36 @@
 import type { NextPage } from "next";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import React, { useContext, useEffect } from "react";
-import styles from "@/styles/Coin.module.css";
+import React from "react";
 import redis from "lib/redis";
-import Chart from "@/components/Coins/Chart";
-import Overview from "@/components/Coins/Overview";
 import NavBar from "@/components/shared/NavBar";
-import Listing from "@/components/Home/Listing";
+import Listing from "@/components/Watchlist/Listing";
 import NftListing from "@/components/Nft/NftListing";
-// import { ListingInterface } from "../types/Home/listing";
+import { CoinInterface } from "types/Coins/data";
+import { NftInterface } from "types/Nft/nft";
+import styles from "@/styles/Watchlist.module.css";
 
 const Watchlist: NextPage = ({
   data,
   coins,
   nfts,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  console.log(coins, nfts);
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <NavBar />
-        <section>
-          <h1>Coins</h1>
-          {coins.map((coin, i) => (
+        <section className={styles.listings}>
+          <h2 className={styles.heading}>Coins</h2>
+          {coins.map((coin: CoinInterface, i: number) => (
             <Listing listing={coin} key={i} />
           ))}
         </section>
-        <section>
-          <h1>NFTs</h1>
-          {nfts.map((nft, i) => (
-            <NftListing nft={nft} key={i} />
+        <section className={styles.listings}>
+          <h2 className={styles.heading}>NFTs</h2>
+          {nfts.map((nft: NftInterface, i: number) => (
+            <NftListing nft={nft} key={i} source="watchlist" />
           ))}
         </section>
+        <div />
       </main>
     </div>
   );
