@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ["assets.coingecko.com", "www.larvalabs.com"],
   },
+  swcMinify: false,
 };
 
 module.exports = nextConfig;
